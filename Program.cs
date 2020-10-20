@@ -29,8 +29,9 @@ namespace RAWDATA_Assignment_3
 
                 Console.WriteLine($"Message from client {msg}");
 
-                var data = Encoding.UTF8.GetBytes(msg.ToUpper());
+                //Method to create and return new JSON
 
+                var data = Encoding.UTF8.GetBytes(msg.ToUpper());
                 stream.Write(data);
 
             }
@@ -39,9 +40,9 @@ namespace RAWDATA_Assignment_3
         private static string Read(TcpClient client, NetworkStream stream)
         {
             byte[] data = new byte[client.ReceiveBufferSize];
-
             var cnt = stream.Read(data);
-
+            //Creating unnamed type from JSON
+            //var incoming = new {method, path, date, body};
             var msg = Encoding.UTF8.GetString(data, 0, cnt);
             return msg;
         }
